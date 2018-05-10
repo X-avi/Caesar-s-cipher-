@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+
+public class CifradoCesar {
+    public static void main(String[] args) {
+        Scanner t=new Scanner(System.in);
+        
+        StringBuffer code=new StringBuffer();
+        String cadena;
+        int x,i,tam;
+        
+        System.out.println("Ingresar palabra");
+        cadena=t.nextLine();
+        tam=cadena.length();
+        for(i=0;i<tam;i++){
+        x=cadena.codePointAt(i);//hallando el codgo ansi
+            //restringiendo a las letras mayusculas y minusculas
+        if((65<=x && x<88) || (97<=x && x<120)){
+        code=code.appendCodePoint(x+3);//aumentando al codigo ansi
+                        
+        }else {
+            //letras finales a iniciales
+            if((x>=120 && x<=122) || (x>=88 && x<=90)){
+                if(x==120){
+                code=code.appendCodePoint('a');
+                }if(x==121){
+                code=code.appendCodePoint('b');
+                }if(x==122){
+                code=code.appendCodePoint('c');
+                }if(x==88){
+                code=code.appendCodePoint('A');
+                }if(x==89){
+                code=code.appendCodePoint('B');
+                }if(x==90){
+                code=code.appendCodePoint('C');
+                }
+            } else{//acumulando en un string nuevo el codigo ansi de la letra
+               code=code.appendCodePoint(x); 
+            } 
+        }
+        }
+        System.out.println("Cifrado:");
+        System.out.println(code);
+    }
+}
